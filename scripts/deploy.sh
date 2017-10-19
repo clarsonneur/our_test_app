@@ -35,9 +35,9 @@ do
 done
 
 echo "Intance:IPs"
-echo "d1:$d1ip"
-echo "d2:$d2ip"
-echo "d3:$d3ip"
+echo "d1:\"$d1ip\""
+echo "d2:\"$d2ip\""
+echo "d3:\"$d3ip\""
 
 # Remove host keys
 ssh-keygen -R $d1ip
