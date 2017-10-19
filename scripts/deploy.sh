@@ -51,6 +51,7 @@ do
     outd1=$($SSHCMD debian@$d1ip uname -a)
     outd2=$($SSHCMD debian@$d2ip uname -a)
     outd3=$($SSHCMD debian@$d3ip uname -a)
+	sleep 2s
 done
 
 # Building small 3 nodes cluster
