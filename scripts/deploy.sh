@@ -27,7 +27,7 @@ openstack server create --image "$IMAGE" --flavor "$FLAVOR" --key-name "$KEYNAME
 openstack server create --image "$IMAGE" --flavor "$FLAVOR" --key-name "$KEYNAME" d3-$TRAVIS_COMMIT --wait
 
 # Get the ips
-while ([[ -z $d1ip ]] && [[ -z $d2ip ]] && [[ -z $d3ip ]])
+while ([[ -z $d1ip ]] || [[ -z $d2ip ]] || [[ -z $d3ip ]])
 do
 	d1ip=$(openstack server show d1-$TRAVIS_COMMIT -f json | jq -r '.addresses' | awk -F ',' '{print $NF}' | sed -r 's/\s//g')
 	d2ip=$(openstack server show d2-$TRAVIS_COMMIT -f json | jq -r '.addresses' | awk -F ',' '{print $NF}' | sed -r 's/\s//g')
@@ -46,7 +46,7 @@ ssh-keygen -R $d3ip
 
 # Try to connect each instance
 #ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no
-while ([[ -z $outd1 ]] && [[ -z $outd2 ]] && [[ -z $outd3 ]])
+while ([[ -z $outd1 ]] || [[ -z $outd2 ]] || [[ -z $outd3 ]])
 do
     outd1=$($SSHCMD debian@$d1ip uname -a)
     outd2=$($SSHCMD debian@$d2ip uname -a)
