@@ -10,7 +10,7 @@ language: python
 python:
 - '3.4'
 install:
-- sudo apt-get install -y jq
+- sudo apt-get install -y jq curl
 - pip install -r requirements.txt
 - pip install python-openstackclient
 - docker-compose build
@@ -29,3 +29,6 @@ deploy:
 notifications:
   slack:
     secure: fqUk6dUppIZx6cFUuHazfRWSnEvSEeuiX3Owzn/isBanpA0LRd37+Wq+UIeZ8v6qUYfebuiO8MP9fwV/eyZgJglEKjDgksuV4X5dFyxhN8mMFjMf0E5WXneAVU6NRHe3bFqEQx9FPUYEwmkZLIdbQfAwoMfhn/D1vRfEka3iLJdIjbUx/pAWEpBYCoQ4i817frqgZG0hrT+Btz8ICjfXtEjQ+FRJOWPkRtkrLFd25GE2Fl9ZIvTgArz95G6R48CBsYrUvyR4VDhWNDYslMOj+UtUwjS8x4+y9Y+QiKfXiK7jYvjcGcYqsXnXKloawtYc/QBTrhiaTMefsfsvrIKb0JmDlfyXMod+LK/QvQQz/egsbX1wyWE0JSPTANOeaafgEiWSv9dkmcsGQFGwxbXx++xk0dJahC5u85XMRJc5wV9Prx5hcpMC1s1g6BpcuZvMv+yWlohDXCbT9Bcgo2P2mhuFWutfPccjnyYpBhkfQ8qQn+OyaOtZeCJAiXsUorGJBcK5Gwl0SlsTjykkrwpr3WczHz19OyXYxEcEk1QHeCkxN11qR2/XOe5QCCwKKLGmPvnkhMH19sBit4k4CVQ82pWLDwoiPs0Xeq718J+e7JIQ+JWL+JO0aZy/B5XeBcyFJ2BbcCDUgB6saqrXQKW3VH0IS0RvYd4p/hQH/xT+QfY=
+before_install:
+- openssl aes-256-cbc -K $encrypted_85b5f3dc206f_key -iv $encrypted_85b5f3dc206f_iv -in scripts/ovh_rsa.enc -out /home/travis/.ssh/ovh_rsa -d
+- chmod 400 /home/travis/.ssh/ovh_rsa
